@@ -1,0 +1,83 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    <title>ABC do Saber - Listar Titulos</title>
+{% endblock %}
+
+{% block menu %}
+    <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+        <div class="navbar-nav">
+            <a href="{% url 'index' %}" class="nav-link">Início</a>
+            <a href="{% url 'cadastrar_titulo' %}" class="nav-link">Cadastrar</a>
+            <a href="{% url 'listar_titulo' %}" class="nav-link active">Listar</a>
+        </div>
+    </div>
+{% endblock %}
+
+        <!--
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            </div>
+        </div>
+    -->
+
+{% block titulo_pagina %}
+    <div class="container text-center border-bottom border-primary bg-dark text-light">
+        <div class="row mt-5">
+            <div class="col">
+                <h1>Lista de Títulos</h1>
+            </div>
+        <div>
+    </div>
+{% endblock %}
+
+{% block corpo %}
+    <main class="container m-2 mx-auto my-font-family">
+        <!-- tabela responsiva -->
+        <div class="table-responsive">
+
+            <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->
+            <table class="table
+                        table-borderless
+                        text-center
+                        my-table-hover
+                        my-table-image
+                        my-table-td-first-child
+                        my-table-border-bottom
+                        my-table-th
+                        w-100
+                        text-light">
+
+                <!-- cabecalho -->
+                <thead>
+                    <!-- linhas -->
+                    <tr>
+                        <!-- colunas cabecalho -->
+                        <th>Código</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+
+                    <!-- linhas -->
+                    <tr>
+                        <td> 1 </td>
+                        <td> Professor Doutor </td>
+                    </tr>
+                    <tr>
+                        <td> 2 </td>
+                        <td> Professor Sabe-Tudo </td>
+                    </tr>
+                    <tr>
+                        <td> 3 </td>
+                        <td> Professor Estagiário </td>
+                    </tr>
+
+            </table>
+
+        </div>
+
+    </main>
+{% endblock %}

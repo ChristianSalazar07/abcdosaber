@@ -2,5 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-    return HttpResponse('<p> Minha View do App Aluno </p>')
+def listar_aluno(request):
+    return render(request, "aluno/listarAlunos.html")
+
+def cadastrar_aluno(request):
+    return render(request, "aluno/cadastroAluno.html")
