@@ -8,8 +8,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
         <div class="navbar-nav">
             <a href="{% url 'index' %}" class="nav-link">Início</a>
-            <a href="{% url 'cadastrar_aluno' %}" class="nav-link active">Cadastrar</a>
-            <a href="{% url 'listar_aluno' %}" class="nav-link">Listar</a>
+            <a href="{% url 'aluno:cadastrar' %}" class="nav-link active">Cadastrar</a>
+            <a href="{% url 'aluno:listar' %}" class="nav-link">Listar</a>
         </div>
     </div>
 {% endblock %}
@@ -35,7 +35,8 @@
 {% endblock %}
 
 {% block corpo %}
-    <form action="#" method="POST" name="frmCadastrarAluno" id="idFrmCadastrarAluno">
+    <form action="{% url 'aluno:listar'%}" method="POST" name="frmCadastrarAluno" id="idFrmCadastrarAluno">
+    {% csrf_token %}
         <div class="form-group">
             <label for='idNome'>Nome</label>
             <input class="form-control bg-dark text-light" type='text' id='idNome' name='nome' placeholder='Informe o nome do aluno' required>

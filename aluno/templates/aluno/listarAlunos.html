@@ -8,8 +8,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
         <div class="navbar-nav">
             <a href="{% url 'index' %}" class="nav-link">Início</a>
-            <a href="{% url 'cadastrar_aluno' %}" class="nav-link">Cadastrar</a>
-            <a href="{% url 'listar_aluno' %}" class="nav-link active">Listar</a>
+            <a href="{% url 'aluno:cadastrar' %}" class="nav-link">Cadastrar</a>
+            <a href="{% url 'aluno:listar' %}" class="nav-link active">Listar</a>
         </div>
     </div>
 {% endblock %}
@@ -65,49 +65,49 @@
 
             <!-- linhas -->
             <tr>
-                <td> 1 </td>
+                <td> 000001 </td>
                 <td> Marcos Ferreira </td>
                 <td> 01/10/2021 </td>
                 <td> -- </td>
                 <td> SIM </td>
             </tr>
             <tr>
-                <td> 2 </td>
+                <td> 000002 </td>
                 <td> José Mauro </td>
                 <td> 01/09/2020 </td>
                 <td> -- </td>
                 <td> SIM </td>
             </tr>
             <tr>
-                <td> 3 </td>
+                <td> 000003 </td>
                 <td> Hian Ferreira </td>
                 <td> 10/08/2021 </td>
                 <td> -- </td>
                 <td> SIM </td>
             </tr>
             <tr>
-                <td> 4 </td>
+                <td> 000004 </td>
                 <td> Pedro Miranda </td>
                 <td> 12/07/2022 </td>
                 <td> -- </td>
                 <td> NÃO </td>
             </tr>
             <tr>
-                <td> 5 </td>
+                <td> 000005 </td>
                 <td> Stephanie Negri </td>
                 <td> 21/11/2020 </td>
                 <td> -- </td>
                 <td> NÃO </td>
             </tr>
             <tr>
-                <td> 6 </td>
+                <td> 000006 </td>
                 <td> Carlos Alexandre </td>
                 <td> 10/03/2022 </td>
                 <td> -- </td>
                 <td> NÃO </td>
             </tr>
             <tr>
-                <td> 7 </td>
+                <td> 000007 </td>
                 <td> Felipe Gomes </td>
                 <td> 04/12/2021 </td>
                 <td> -- </td>
@@ -115,10 +115,10 @@
             </tr>
             {% for estudante in lista_de_alunos %}
                 <tr>
-                    <td> {{estudante.id}} </td>
+                    <td> {{estudante.id|stringformat:"06d"}} </td>
                     <td> {{estudante.nome}} </td>
                     <td> {{estudante.data_matricula|date:"SHORT_DATE_FORMAT"}} </td>
-                    <td> {{estudante.data_saida|date:"SHORT_DATE_FORMAT"}} </td>
+                    <td> {{estudante.data_saida|date:"SHORT_DATE_FORMAT"|default:"--"}} </td>
                     {% if estudante.aluno_monitor == true %}
                     <td> SIM </td>
                     {% else %}

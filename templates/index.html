@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
         <div class="navbar-nav">
             <a href="{% url 'index' %}" class="nav-link active">Início</a>
-            <a href="{% url 'tipodeatividade_index' %}" class="nav-link">Tipos de Atividade</a>
-            <a href="{% url 'listar_titulo' %}" class="nav-link">Títulos</a>
-            <a href="{% url 'listar_aluno' %}" class="nav-link">Alunos</a>
-            <a href="{% url 'instrutor_index' %}" class="nav-link">Instrutor</a>
-            <a href="{% url 'turma_index' %}" class="nav-link">Turmas</a>
-            <a href="{% url 'index' %}" class="nav-link">Contato</a>
+            <a href="{% url 'tipodeatividade:principal' %}" class="nav-link">Tipos de Atividade</a>
+            <a href="{% url 'titulo:listar' %}" class="nav-link">Títulos</a>
+            <a href="{% url 'aluno:listar' %}" class="nav-link">Alunos</a>
+            <a href="{% url 'instrutor:principal' %}" class="nav-link">Instrutor</a>
+            <a href="{% url 'turma:principal' %}" class="nav-link">Turmas</a>
+            <a href="/" class="nav-link">Contato</a>
         </div>
     </div>
 {% endblock %}
