@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Aluno(models.Model):
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, null=False, help_text="Informe o nome do aluno:")
     data_matricula = models.DateField()
     data_saida = models.DateField(default=None, null=True, blank=True)
     aluno_monitor = models.BooleanField(default=False)
