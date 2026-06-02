@@ -1,0 +1,92 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    <title>ABC do Saber - Cadastro Turma</title>
+{% endblock %}
+
+{% block menu %}
+    <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+        <div class="navbar-nav">
+            <a href="/" class="nav-link">Início</a>
+            <a href="{% url 'turma:cadastrar' %}" class="nav-link">Cadastrar</a>
+            <a href="{% url 'turma:listar' %}" class="nav-link">Listar</a>
+            <a href="{% url 'turma:ausencia' %}" class="nav-link active">Registrar Ausência</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+        <!-- verifica se ha alguma mensagem de retorno e apresenta alerta
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?=$mensagemAlerta?>
+                </div>
+            </div>
+        </div>
+        -->
+
+{% block titulo_pagina %}
+    <div class="container text-center border-bottom border-primary bg-dark text-light">    
+        <div class="row mt-5">
+            <div class="col">
+                <h1>Registro de Ausências</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+        <!-- formulario para escolher a turma -->
+{% block corpo %}
+    <form name="frmDefinirTurma" id="idFrmDefinirTurma" action="#" method="post">
+
+        <!-- montagem do combo com as turmas cadastradas que tenha aluno -->
+        <div class="form-group">
+            <label for="idTurma">Turma</label>
+            <select class="form-control bg-dark text-light" id="idTurma" name="numeroTurma">
+                <option value="0">Selecione...</option>
+                <option value="1">Turma 0001 - 10:00:00</option>
+                <option value="2">Turma 0002 - 13:00:00</option>
+                <option value="3">Turma 0003 - 18:00:00</option>
+            </select>
+        </div>
+
+        <div class="form-group my-4 text-center">
+            <input type="button" value="Limpar" class="btn btn-primary btn-md" id="idLimparTurmas">
+            <input type="submit" value="Consultar" class="btn btn-primary btn-md">
+        </div>
+
+    </form>
+
+    <!-- formulario HTML para registrar ausencia de alunos de uma turma -->
+    <form name="frmRegistrarAusencia" action="#" method="post">
+
+        <!-- utiliza um input "hidden" para armazerar a turma escolhida inicialmente -->
+        <input type="hidden" name="numeroTurmaSelecionada" value="">
+
+        <!-- montagem do combo com os tipos de atividade -->
+        <div class="form-group">
+            <label for="idAlunoTurma">Aluno da Turma</label>
+            <select class="form-control bg-dark text-light" id="idAlunoTurma" name="matriculaAluno">
+                <option value="0">Selecione...</option>
+                <option value="1">Marcos Ferreira</option>
+                <option value="2">José Mauro</option>
+                <option value="3">Hian Ferreira</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="idDataAusencia" class="col-form-label">Data da Ausência</label>
+            <input class="form-control bg-dark text-light" type="date" id="idDataAusencia" name="dataAusencia" required>
+        </div>
+
+        <div class="form-group my-4 text-center">
+            <input type="reset" value="Limpar" class="btn btn-primary btn-md">
+            <input type="submit" value="Registrar" class="btn btn-primary btn-md">
+        </div>
+
+    </form>
+{% endblock %}
+    

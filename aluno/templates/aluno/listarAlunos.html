@@ -115,7 +115,7 @@
             </tr>
             {% for estudante in lista_de_alunos %}
                 <tr>
-                    <td> {{estudante.id|stringformat:"06d"}} </td>
+                    <td> {{estudante.matricula|stringformat:"06d"}} </td>
                     <td> {{estudante.nome}} </td>
                     <td> {{estudante.data_matricula|date:"SHORT_DATE_FORMAT"}} </td>
                     <td> {{estudante.data_saida|date:"SHORT_DATE_FORMAT"|default:"--"}} </td>
