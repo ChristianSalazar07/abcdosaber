@@ -72,7 +72,7 @@
                 <td>{{ professor.nome }}</td>
                 <td>{{ professor.rg }}</td>
                 <td>{{ professor.data_nascimento|date:"SHORT_DATE_FORMAT"}}</td>
-                <td>{{ professor.ddd }}</td>
+                <td>{{ professor.ddd|stringformat:"03d"}}</td>
                 <td>{{ professor.telefone }}</td>
                 <td>{{ professor.codigo_titulo.descricao }}</td>
             </tr>
