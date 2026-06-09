@@ -64,62 +64,13 @@
             </thead>
 
             <!-- linhas -->
-            <tr>
-                <td> 000001 </td>
-                <td> Marcos Ferreira </td>
-                <td> 01/10/2021 </td>
-                <td> -- </td>
-                <td> SIM </td>
-            </tr>
-            <tr>
-                <td> 000002 </td>
-                <td> José Mauro </td>
-                <td> 01/09/2020 </td>
-                <td> -- </td>
-                <td> SIM </td>
-            </tr>
-            <tr>
-                <td> 000003 </td>
-                <td> Hian Ferreira </td>
-                <td> 10/08/2021 </td>
-                <td> -- </td>
-                <td> SIM </td>
-            </tr>
-            <tr>
-                <td> 000004 </td>
-                <td> Pedro Miranda </td>
-                <td> 12/07/2022 </td>
-                <td> -- </td>
-                <td> NÃO </td>
-            </tr>
-            <tr>
-                <td> 000005 </td>
-                <td> Stephanie Negri </td>
-                <td> 21/11/2020 </td>
-                <td> -- </td>
-                <td> NÃO </td>
-            </tr>
-            <tr>
-                <td> 000006 </td>
-                <td> Carlos Alexandre </td>
-                <td> 10/03/2022 </td>
-                <td> -- </td>
-                <td> NÃO </td>
-            </tr>
-            <tr>
-                <td> 000007 </td>
-                <td> Felipe Gomes </td>
-                <td> 04/12/2021 </td>
-                <td> -- </td>
-                <td> NÃO </td>
-            </tr>
             {% for estudante in lista_de_alunos %}
                 <tr>
-                    <td> {{estudante.matricula|stringformat:"06d"}} </td>
+                    <td class="text-center"> {{estudante.matricula|stringformat:"06d"}} </td>
                     <td> {{estudante.nome}} </td>
                     <td> {{estudante.data_matricula|date:"SHORT_DATE_FORMAT"}} </td>
                     <td> {{estudante.data_saida|date:"SHORT_DATE_FORMAT"|default:"--"}} </td>
-                    {% if estudante.aluno_monitor == true %}
+                    {% if estudante.aluno_monitor == True %}
                     <td> SIM </td>
                     {% else %}
                     <td> NÃO </td>

@@ -36,8 +36,8 @@
 
         <!-- formulario HTML -->
     {% block corpo %}
-        <form name="frmCadastrarInstrutor" action="#" method="post">
-
+        <form name="frmCadastrarInstrutor" action="{% url 'instrutor:cadastrar' %}" method="post">
+        {% csrf_token %}
             <div class="form-group">
                 <label for="idNomeInstrutor" class="col-form-label">Nome do Instrutor</label>
                 <input class="form-control bg-dark text-light" type="text" id="idNomeInstrutor" name="nome"
@@ -52,7 +52,7 @@
 
             <div class="form-group">
                 <label for='idDataNascimento'>Data de Nascimento</label>
-                <input class="form-control bg-dark text-light" type='date' id='idDataNascimento' name='dataNascimento' required>
+                <input class="form-control bg-dark text-light" type='date' id='idDataNascimento' name='data_nascimento' required>
             </div>
 
             <div class="form-group row">
@@ -68,12 +68,10 @@
 
             <div class="form-group">
                 <label for="idTitulo">Título do Professor</label>
-                <select class="form-control bg-dark text-light" id="idTitulo" name="codigoTitulo">
-                    <option value="0">Selecione...</option>
-                    <option value="1">Professor Doutor</option>
-                    <option value="2">Professor Sabe-Tudo</option>
-                    <option value="3">Professor Estagiário</option>
-
+                <select class="form-control bg-dark text-light" id="idTitulo" name="codigo_titulo">
+                    {% for titulo in lista_de_titulos %}
+                    <option value={{ titulo.codigo }}>{{ titulo.descricao }}</option>
+                    {% endfor %}
                 </select>
             </div>
 

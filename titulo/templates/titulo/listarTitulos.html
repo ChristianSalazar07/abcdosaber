@@ -51,19 +51,12 @@
                 </thead>
 
                     <!-- linhas -->
+                    {% for titulo in lista_de_titulos %}
                     <tr>
-                        <td> 1 </td>
-                        <td> Professor Doutor </td>
+                        <td class="text-center"> {{titulo.codigo|stringformat:"02d"}} </td>
+                        <td> {{titulo.descricao}} </td>
                     </tr>
-                    <tr>
-                        <td> 2 </td>
-                        <td> Professor Sabe-Tudo </td>
-                    </tr>
-                    <tr>
-                        <td> 3 </td>
-                        <td> Professor Estagiário </td>
-                    </tr>
-
+                    {% endfor %}
             </table>
 
         </div>

@@ -66,33 +66,17 @@
             </thead>
 
             <!-- linhas -->
+            {% for professor in lista_de_instrutores %}
             <tr>
-                <td> 1 </td>
-                <td> Jefferson Gonçalves </td>
-                <td> 099998888 </td>
-                <td> 05/10/1978 </td>
-                <td> 021 </td>
-                <td> 897698512 </td>
-                <td> Professor Doutor </td>
+                <td>{{ professor.id }}</td>
+                <td>{{ professor.nome }}</td>
+                <td>{{ professor.rg }}</td>
+                <td>{{ professor.data_nascimento|date:"SHORT_DATE_FORMAT"}}</td>
+                <td>{{ professor.ddd }}</td>
+                <td>{{ professor.telefone }}</td>
+                <td>{{ professor.codigo_titulo.descricao }}</td>
             </tr>
-            <tr>
-                <td> 2 </td>
-                <td> Maria Joaquina </td>
-                <td> 125487966 </td>
-                <td> 10/01/1987 </td>
-                <td> 021 </td>
-                <td> 12322211 </td>
-                <td> Professor Doutor </td>
-            </tr>
-            <tr>
-                <td> 3 </td>
-                <td> Juliana Fergusson </td>
-                <td> 874895692 </td>
-                <td> 15/11/1968 </td>
-                <td> 022 </td>
-                <td> 87474774 </td>
-                <td> Professor Sabe-Tudo </td>
-            </tr>
+            {% endfor %}
         </table>
 
     </div>

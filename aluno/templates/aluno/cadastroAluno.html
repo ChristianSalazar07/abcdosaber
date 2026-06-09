@@ -35,7 +35,7 @@
 {% endblock %}
 
 {% block corpo %}
-    <form action="{% url 'aluno:listar'%}" method="POST" name="frmCadastrarAluno" id="idFrmCadastrarAluno">
+    <form action="{% url 'aluno:cadastrar' %}" method="POST" name="frmCadastrarAluno" id="idFrmCadastrarAluno">
     {% csrf_token %}
         <div class="form-group">
             <label for='idNome'>Nome</label>
@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <label for='idDataInicial'>Data de Início na Escola</label>
-            <input class="form-control bg-dark text-light" type='date' id='idDataInicial' name='dataInicial' required>
+            <input class="form-control bg-dark text-light" type='date' id='idDataInicial' name='data_matricula' required>
         </div>
         <div class='form-group text-center'>
             <input type='reset'  value='Limpar' class='btn btn-primary btn-md'>
