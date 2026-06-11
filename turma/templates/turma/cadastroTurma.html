@@ -37,32 +37,32 @@
 {% endblock %}
 
 {% block corpo %}
-    <form name="frmCadastrarTurma" action="#" method="post">
+    <form name="{% url 'turma:cadastrar' %}" action="#" method="post">
+    {% csrf_token %}
 
         <div class="form-group">
             <label for="idHorarioAula" class="col-form-label">Horário da Aula</label>
-            <input class="form-control bg-dark text-light" type="time" id="idHorarioAula" name="horarioAula" required>
+            <input class="form-control bg-dark text-light" type="time" id="idHorarioAula" name="horario_aula" required>
         </div>
 
         <div class="form-group">
             <label for='idDuracaoAula'>Duração da Aula em horas</label>
-            <input class="form-control bg-dark text-light" type='number' id='idDuracaoAula' name='duracaoAula' required>
+            <input class="form-control bg-dark text-light" type='number' id='idDuracaoAula' name='duracao_aula' required>
         </div>
 
         <div class="form-group">
             <label for='idDataInicial'>Data de Início</label>
-            <input class="form-control bg-dark text-light" type='date' id='idDataInicial' name='dataInicial' required>
+            <input class="form-control bg-dark text-light" type='date' id='idDataInicial' name='data_inicial' required>
         </div>
 
         <!-- montagem do combo com os tipos de atividade -->
         <div class="form-group">
             <label for="idTipoAtividade">Tipo de Atividade</label>
-            <select class="form-control bg-dark text-light" id="idTipoAtividade" name="tipoAtividade">
-                <option value="0">Selecione...</option>
-                <option value="1">Programador Web</option>
-                <option value="2">Técnico em Informática</option>
-                <option value="3">Web Designer</option>
-                <option value="4">Educação Física</option>
+            <select class="form-control bg-dark text-light" id="idTipoAtividade" name="codigo_tipo_atividade">
+                <option disabled selected value="0">Selecione...</option>
+                    {% for atividade in lista_de_atividades %}
+                    <option value={{ atividade.codigo }}>{{ atividade.descricao }}</option>
+                    {% endfor %}
 
             </select>
         </div>
@@ -71,25 +71,22 @@
         <!-- montagem do combo com os instrutores -->
         <div class="form-group">
             <label for="idInstrutor">Instrutor</label>
-            <select class="form-control bg-dark text-light" id="idInstrutor" name="idInstrutor">
-                <option value="0">Selecione...</option>
-                <option value="2">Maria Joaquina</option>
-                <option value="3">Juliana Fergusson</option>
+            <select class="form-control bg-dark text-light" id="idInstrutor" name="id_instrutor">
+                <option disabled selected value="0">Selecione...</option>
+                    {% for instrutor in lista_de_instrutores %}
+                    <option value={{ instrutor.id }}>{{ instrutor.nome }}</option>
+                    {% endfor %}
             </select>
         </div>
 
         <!-- montagem do combo com os alunos -->
         <div class="form-group">
             <label for="idAluno">Aluno Monitor</label>
-            <select class="form-control bg-dark text-light" id="idAluno" name="matriculaAlunoMonitor">
-                <option value="0">Selecione...</option>
-                <option value="1">Marcos Ferreira</option>
-                <option value="2">José Mauro</option>
-                <option value="3">Hian Ferreira</option>
-                <option value="4">Pedro Miranda</option>
-                <option value="5">Stephanie Negri</option>
-                <option value="6">Carlos Alexandre</option>
-                <option value="7">Felipe Gomes</option>
+            <select class="form-control bg-dark text-light" id="idAluno" name="matricula_monitor">
+                <option disabled selected value="0">Selecione...</option>
+                    {% for estudante in lista_de_alunos %}
+                    <option value={{ estudante.matricula }}>{{ estudante.nome }}</option>
+                    {% endfor %}
             </select>
         </div>
 

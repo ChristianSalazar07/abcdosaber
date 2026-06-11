@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 <label for='idRg'>RG</label>
-                <input class="form-control bg-dark text-light" type='text' id='idRg' name='rg' placeholder="Informe o RG" maxlength="45"
+                <input class="form-control bg-dark text-light" type='text' id='idRg' name='rg' placeholder="Informe o RG" maxlength="9"
                     required>
             </div>
 
@@ -68,7 +68,8 @@
 
             <div class="form-group">
                 <label for="idTitulo">Título do Professor</label>
-                <select class="form-control bg-dark text-light" id="idTitulo" name="codigo_titulo">
+                <select class="form-control bg-dark text-light" id="idTitulo" name="codigo_titulo" required>
+                    <option disabled selected value="0">Selecione...</option>
                     {% for titulo in lista_de_titulos %}
                     <option value={{ titulo.codigo }}>{{ titulo.descricao }}</option>
                     {% endfor %}

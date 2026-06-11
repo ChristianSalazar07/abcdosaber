@@ -44,11 +44,11 @@
         <!-- montagem do combo com as turmas cadastradas que tenha aluno -->
         <div class="form-group">
             <label for="idTurma">Turma</label>
-            <select class="form-control bg-dark text-light" id="idTurma" name="numeroTurma">
-                <option value="0">Selecione...</option>
-                <option value="1">Turma 0001 - 10:00:00</option>
-                <option value="2">Turma 0002 - 13:00:00</option>
-                <option value="3">Turma 0003 - 18:00:00</option>
+            <select class="form-control bg-dark text-light" id="idTurma" name="numero_turma">
+                <option disabled selected value="0">Selecione...</option>
+                    {% for turma in lista_de_turmas %}
+                    <option value={{ turma.numero }}>Turma {{ turma.numero|stringformat:"04d"}} - {{ turma.horario_aula|time:"H:i:s"}}</option>
+                    {% endfor %}
             </select>
         </div>
 

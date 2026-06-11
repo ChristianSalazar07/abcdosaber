@@ -8,3 +8,10 @@ class instrutorForm(forms.Form):
     ddd = forms.IntegerField(required=True, help_text="Informe o DDD:")
     telefone = forms.IntegerField(required=True, help_text="Informe o Telefone:")
     codigo_titulo = forms.ModelChoiceField(queryset=Titulo.objects.all(), required=True, empty_label="Selecione...", help_text="Informe o Título")
+
+    def clean(self):
+        dados = super().clean()
+        titulo = dados.get('codigo_titulo')
+        if titulo == 0:
+            raise forms.ValidationError("Um título deve ser selecionado.")
+        return dados

@@ -65,22 +65,12 @@
             </thead>
 
             <!-- linhas -->
+            {% for atividade in lista_de_atividades %}
             <tr>
-                <td> 1 </td>
-                <td> Programador Web </td>
+                <td>{{ atividade.codigo }}</td>
+                <td>{{ atividade.descricao }}</td>
             </tr>
-            <tr>
-                <td> 2 </td>
-                <td> Técnico em Informática </td>
-            </tr>
-            <tr>
-                <td> 3 </td>
-                <td> Web Designer </td>
-            </tr>
-            <tr>
-                <td> 4 </td>
-                <td> Educação Física </td>
-            </tr>
+            {% endfor %}
         </table>
 
     </div>
