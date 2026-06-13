@@ -6,4 +6,5 @@ app_name = 'titulo'
 urlpatterns = [
     path('cadastrar/', views.cadastrar, name='cadastrar'),
     path('listar/', views.listar, name='listar'),
+    path('excluir/<int:codigoTitulo>', views.excluir, name='excluir_titulo')
 ]

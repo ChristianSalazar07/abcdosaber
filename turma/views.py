@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Turma, TurmaAluno
-from .forms import TurmaForm
+from django.http import Http404
+from django.shortcuts import render, redirect
+from .models import Turma, TurmaAluno, Ausencia
+from .forms import TurmaForm, AusenciaForm, ConsultaForm
 from tipodeatividade.models import TipoAtividade
 from aluno.models import Aluno
 from instrutor.models import Instrutor
@@ -37,11 +38,30 @@ def cadastrar(request):
         turma.save()
     return render(request, "turma/cadastroTurma.html", context)
 
-def ausencia(request):
+def ausencia(request, turma_id = 0):
     lista_turmas = Turma.objects.all()
-    lista_turma_alunos = TurmaAluno.objects.all()
+    lista_turma_alunos = TurmaAluno.objects.all().filter(numero_turma=turma_id)
     context = {
         'lista_de_turmas':lista_turmas,
-        'lista_de_turma_alunos':lista_turma_alunos
+        'lista_de_turma_alunos':lista_turma_alunos,
+        'id_turma':turma_id
     }
+    if request.method == 'POST':
+        if 'btnAusencia' in request.POST:
+            form = AusenciaForm(request.POST)
+            if form.is_valid():
+                dados_ausencia = form.cleaned_data
+                ausencia = Ausencia(
+                    numero_turma = dados_ausencia['numero_turma'],
+                    matricula_aluno = dados_ausencia['matricula_aluno'],
+                    data_ausencia = dados_ausencia['data_ausencia']
+                )
+                ausencia.save()
+        if 'btnConsultar' in request.POST:
+            form = ConsultaForm(request.POST)
+            if form.is_valid():
+                dados_consulta = form.cleaned_data
+                consulta = dados_consulta['numero_turma']
+                return redirect('ausencia', turma_id=consulta)
     return render(request, "turma/registroAusencia.html", context)
+    

@@ -37,7 +37,7 @@
 {% endblock %}
 
 {% block corpo %}
-    <form name="{% url 'turma:cadastrar' %}" action="#" method="post">
+    <form name="frmCadastrarTurma" action="{% url 'turma:cadastrar' %}" method="post">
     {% csrf_token %}
 
         <div class="form-group">

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Titulo
 from .forms import tituloForm
 
@@ -20,3 +20,11 @@ def cadastrar(request):
         )
         titulo.save()
     return render(request, "titulo/cadastroTitulos.html")
+
+def excluir(request, codigoTitulo):
+    try:
+        titulo = Titulo.objects.get(pk=codigoTitulo)
+        titulo.delete()
+    except Titulo.DoesNotExist:
+        pass
+    return redirect('titulo:listar')

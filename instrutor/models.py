@@ -9,7 +9,7 @@ class Instrutor(models.Model):
     data_nascimento = models.DateField(null=False, help_text="Informe a data de nascimento:")
     ddd = models.IntegerField(null=False, help_text="Informe o DDD:")
     telefone = models.IntegerField(null=False, help_text="Informe o Telefone:")
-    codigo_titulo = models.ForeignKey(Titulo, on_delete=models.CASCADE, null=False ,help_text="Informe o Título")
+    codigo_titulo = models.ForeignKey(Titulo, on_delete=models.SET_NULL, null=True, blank=True ,help_text="Informe o Título")
 
     def __str__(self):
         return f"ID: {self.id} - RG: {self.rg} - Nome: {self.nome} - Data de Nascimento: {self.data_nascimento} - DDD: {self.ddd} - Telefone: {self.telefone} - Titulo: {self.codigo_titulo}"
