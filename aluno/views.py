@@ -2,12 +2,15 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Aluno
 from .forms import AlunoForm
+from turma.models import TurmaAluno
 
 # Create your views here.
 def listar(request):
     lista_alunos = Aluno.objects.all()
+    lista_turma_alunos = TurmaAluno.objects.all()
     context = {
-        "lista_de_alunos": lista_alunos
+        "lista_de_alunos": lista_alunos,
+        "lista_de_turma_alunos": lista_turma_alunos
     }
     return render(request, "aluno/listarAlunos.html", context)
 

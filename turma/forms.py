@@ -13,7 +13,7 @@ class TurmaForm(forms.Form):
     id_instrutor = forms.ModelChoiceField(queryset=Instrutor.objects.all(), required=True, empty_label="Selecione...", help_text="Informe o Instrutor")
 
 class AusenciaForm(forms.Form):
-    numero_turma = forms.ModelChoiceField(queryset=Turma.objects.all(), required=True, help_text="Informe a Turma")
+    numero_turma_selecionada = forms.ModelChoiceField(queryset=Turma.objects.all(), required=True, help_text="Informe a Turma")
     matricula_aluno = forms.ModelChoiceField(queryset=Aluno.objects.all(), required=True, help_text="Informe o Aluno Monitor")
     data_ausencia = forms.DateField(required=True, help_text="Informe a data de ausência na Turma:")
 

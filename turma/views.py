@@ -36,32 +36,39 @@ def cadastrar(request):
             id_instrutor = dados_turma['id_instrutor']
         )
         turma.save()
+        turma_aluno = TurmaAluno(
+            numero_turma = turma,
+            matricula_aluno = dados_turma['matricula_monitor']
+        )
+        turma_aluno.save()
     return render(request, "turma/cadastroTurma.html", context)
 
-def ausencia(request, turma_id = 0):
+def ausencia(request):
     lista_turmas = Turma.objects.all()
-    lista_turma_alunos = TurmaAluno.objects.all().filter(numero_turma=turma_id)
+    
     context = {
         'lista_de_turmas':lista_turmas,
-        'lista_de_turma_alunos':lista_turma_alunos,
-        'id_turma':turma_id
     }
     if request.method == 'POST':
-        if 'btnAusencia' in request.POST:
-            form = AusenciaForm(request.POST)
-            if form.is_valid():
-                dados_ausencia = form.cleaned_data
-                ausencia = Ausencia(
-                    numero_turma = dados_ausencia['numero_turma'],
-                    matricula_aluno = dados_ausencia['matricula_aluno'],
-                    data_ausencia = dados_ausencia['data_ausencia']
-                )
-                ausencia.save()
-        if 'btnConsultar' in request.POST:
-            form = ConsultaForm(request.POST)
+        form = AusenciaForm(request.POST)
+        if form.is_valid():
+            dados_ausencia = form.cleaned_data
+            ausencia = Ausencia(
+                numero_turma = dados_ausencia['numero_turma_selecionada'],
+                matricula_aluno = dados_ausencia['matricula_aluno'],
+                data_ausencia = dados_ausencia['data_ausencia']
+            )
+            ausencia.save()
+        else:
+            return redirect('turma:listar')
+    elif request.method == 'GET':
+        if 'numero_turma' in request.GET:
+            form = ConsultaForm(request.GET)
             if form.is_valid():
                 dados_consulta = form.cleaned_data
-                consulta = dados_consulta['numero_turma']
-                return redirect('ausencia', turma_id=consulta)
+                mensagem = dados_consulta['numero_turma']
+                lista_turma_alunos = TurmaAluno.objects.all().filter(numero_turma=mensagem.numero)
+                context['turma_selecionada'] = mensagem
+                context['lista_de_turma_alunos'] = lista_turma_alunos
     return render(request, "turma/registroAusencia.html", context)
     

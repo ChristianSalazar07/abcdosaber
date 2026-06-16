@@ -2,6 +2,7 @@ from django.db import models
 from tipodeatividade.models import TipoAtividade
 from aluno.models import Aluno
 from instrutor.models import Instrutor
+from datetime import datetime
 
 # Create your models here.
 class Turma(models.Model):
@@ -22,7 +23,7 @@ class Turma(models.Model):
 class TurmaAluno(models.Model):
     numero_turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True, help_text="Informe a Turma")
     matricula_aluno = models.ForeignKey(Aluno, on_delete=models.SET_NULL, null=True ,help_text="Informe o Aluno Monitor")
-    data_matricula = models.DateField(null=False, blank=False, help_text="Informe a data de matrícula na Turma:")
+    data_matricula = models.DateField(null=False, blank=False, help_text="Informe a data de matrícula na Turma:", default=datetime.now)
 
     def __str__(self):
         return f"Turma: {self.numero_turma.numero} - Aluno: {self.matricula_aluno.nome} - Data: {self.data_matricula}"

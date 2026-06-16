@@ -39,12 +39,15 @@
 
         <!-- formulario para escolher a turma -->
 {% block corpo %}
-    <form name="frmDefinirTurma" id="idFrmDefinirTurma" action="#" method="post">
+    <form name="frmDefinirTurma" id="idFrmDefinirTurma" action="#" method="get">
         {% csrf_token %}
 
         <!-- montagem do combo com as turmas cadastradas que tenha aluno -->
         <div class="form-group">
-            <label for="idTurma">Turma {{ id_turma }} </label>
+            <label for="idTurma">Turma {{ turma_selecionada.numero }} </label>
+            {% if turma_selecionada %}
+            <p> Turma selecionada: {{turma_selecionada}} </P>
+            {% endif %}
             <select class="form-control bg-dark text-light" id="idTurma" name="numero_turma">
                 <option disabled selected value="0">Selecione...</option>
                     {% for turma in lista_de_turmas %}
@@ -61,20 +64,21 @@
     </form>
 
     <!-- formulario HTML para registrar ausencia de alunos de uma turma -->
+     {% if turma_selecionada.numero > 0 %}
     <form name="frmRegistrarAusencia" action="{% url 'turma:ausencia'  %}" method="post">
         {% csrf_token %}
 
         <!-- utiliza um input "hidden" para armazerar a turma escolhida inicialmente -->
-        <input type="hidden" name="numeroTurmaSelecionada" value="">
+        <input type="hidden" name="numero_turma_selecionada" value={{ turma_selecionada.numero }}>
 
         <!-- montagem do combo com os tipos de atividade -->
         <div class="form-group">
-        {% if id_turma != 0 %}
+        
             <label for="idAlunoTurma">Aluno da Turma</label>
             <select class="form-control bg-dark text-light" id="idAlunoTurma" name="matricula_aluno">
                 <option value="0">Selecione...</option>
                 {% for estudante in lista_de_turma_alunos %}
-                <option value={{ estudante.matricula_aluno }}>{{ estudante.matricula_aluno.nome }}</option>
+                <option value={{ estudante.matricula_aluno.matricula }}>{{ estudante.matricula_aluno.nome }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -87,7 +91,7 @@
 
         <div class="form-group my-4 text-center">
             <input type="reset" value="Limpar" class="btn btn-primary btn-md">
-            <input type="submit" value="Registrar" class="btn btn-primary btn-md" name="btnAusencia">
+            <input type="submit" value="Registrar" class="btn btn-primary btn-md">
         </div>
         {% endif %}
     </form>
