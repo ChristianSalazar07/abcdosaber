@@ -25,6 +25,11 @@
 {% endblock %}
 
 {% block corpo %}
+    {% if status == 1 %}
+        <div class="bg-success p-1 text-center">
+            <p>Título cadastrado com sucesso!</p>
+        </div>
+    {% endif %}
 
         <form action="{% url 'titulo:cadastrar' %}" method="POST" name="frmCadastrarTitulo" id="idFrmCadastrarTiposAtividade">
         {% csrf_token %}

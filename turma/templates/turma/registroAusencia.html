@@ -46,14 +46,24 @@
         <div class="form-group">
             <label for="idTurma">Turma {{ turma_selecionada.numero }} </label>
             {% if turma_selecionada %}
-            <p> Turma selecionada: {{turma_selecionada}} </P>
-            {% endif %}
+            <p class="text-light bg-success"> Turma selecionada: {{turma_selecionada}} </P>
+            <select class="form-control bg-dark text-light" id="idTurma" name="numero_turma">
+                <option disabled value="0">Selecione...</option>
+                    {% for turma in lista_de_turmas %}
+                    <option value={{ turma.numero }}
+                    {% if turma == turma_selecionada %}
+                        selected
+                    {% endif %}>Turma {{ turma.numero|stringformat:"04d"}} - {{ turma.horario_aula|time:"H:i:s"}}</option>
+                    {% endfor %}
+            </select>
+            {% else %}
             <select class="form-control bg-dark text-light" id="idTurma" name="numero_turma">
                 <option disabled selected value="0">Selecione...</option>
                     {% for turma in lista_de_turmas %}
                     <option value={{ turma.numero }}>Turma {{ turma.numero|stringformat:"04d"}} - {{ turma.horario_aula|time:"H:i:s"}}</option>
                     {% endfor %}
             </select>
+            {% endif %}
         </div>
 
         <div class="form-group my-4 text-center">

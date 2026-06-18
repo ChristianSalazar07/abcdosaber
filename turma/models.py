@@ -21,8 +21,8 @@ class Turma(models.Model):
 
 #Relação Turma e Aluno
 class TurmaAluno(models.Model):
-    numero_turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True, help_text="Informe a Turma")
-    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.SET_NULL, null=True ,help_text="Informe o Aluno Monitor")
+    numero_turma = models.ForeignKey(Turma, on_delete=models.CASCADE, null=True, help_text="Informe a Turma")
+    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, null=True ,help_text="Informe o Aluno Monitor")
     data_matricula = models.DateField(null=False, blank=False, help_text="Informe a data de matrícula na Turma:", default=datetime.now)
 
     def __str__(self):

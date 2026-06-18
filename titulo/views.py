@@ -13,13 +13,22 @@ def listar(request):
 
 def cadastrar(request):
     form = tituloForm(request.POST)
+    status = 0
     if form.is_valid():
         dados_titulo = form.cleaned_data
-        titulo = Titulo(
-            descricao = dados_titulo['descricao']
-        )
-        titulo.save()
-    return render(request, "titulo/cadastroTitulos.html")
+        achou = Titulo.objects.filter(descricao=dados_titulo['descricao'])
+        if not achou:
+            titulo = Titulo(
+                descricao = dados_titulo['descricao']
+            )
+            titulo.save()
+            status = 1
+        else:
+            status = 2
+    context = {
+        "status":status
+    }
+    return render(request, "titulo/cadastroTitulos.html", context)
 
 def excluir(request, codigoTitulo):
     try:

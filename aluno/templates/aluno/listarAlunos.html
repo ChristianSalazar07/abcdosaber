@@ -70,7 +70,7 @@
                     <td> {{estudante.nome}} </td>
                     <td> {{estudante.data_matricula|date:"SHORT_DATE_FORMAT"}} </td>
                     <td> {{estudante.data_saida|date:"SHORT_DATE_FORMAT"|default:"--"}} </td>
-                    {% if estudante.aluno_monitor == True %}
+                    {% if estudante in lista_de_monitores %}
                     <td> SIM </td>
                     {% else %}
                     <td> NÃO </td>
