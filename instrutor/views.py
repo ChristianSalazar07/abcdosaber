@@ -29,4 +29,10 @@ def cadastrar(request):
             codigo_titulo = dados_instrutor['codigo_titulo'],
         )
         instrutor.save()
+    else:
+        erros = form.errors
+        context = {
+            'erros': erros
+        }
+        return render(request ,"instrutor/erroInstrutor.html", context)
     return render(request ,"instrutor/cadastroInstrutor.html", context)
