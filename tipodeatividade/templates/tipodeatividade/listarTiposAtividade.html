@@ -72,7 +72,7 @@
                 <td>{{ atividade.codigo }}</td>
                 <td>{{ atividade.descricao }}</td>
                 <td>
-                    <a href="#" class="btn btn-mini"><i class="far fa-edit"></i></a>
+                    <a href="{% url 'tipodeatividade:atualizar' atividade.codigo %}" class="btn btn-mini"><i class="far fa-edit"></i></a>
                     <button type="button" class="btn" role="button" data-target="#modalExcluirAtividade"
                         data-toggle="modal" data-descricao="{{atividade.descricao}}" 
                         data-url="{% url 'tipodeatividade:excluir_atividade' atividade.codigo %}">

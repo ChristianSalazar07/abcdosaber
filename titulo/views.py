@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Titulo
-from .forms import tituloForm
+from .forms import tituloForm, tituloAtualizarForm
 
 # Create your views here.
 def listar(request):
@@ -37,3 +37,22 @@ def excluir(request, codigoTitulo):
     except Titulo.DoesNotExist:
         pass
     return redirect('titulo:listar')
+
+def atualizar(request, codigoTitulo):
+    # Receber Form
+    if request.method == 'POST':
+        form = tituloAtualizarForm(request.POST)
+        # Validar Form
+        if form.is_valid():
+            dados_atualizar = form.cleaned_data
+        # Se ok então atualizar
+            titulo = Titulo.objects.get(pk=dados_atualizar['codigo'])
+            titulo.descricao = dados_atualizar['descricao']
+            titulo.save()
+        # Redirecionar para a lista de titulo
+        return redirect('titulo:listar')
+    context = {
+        "codigo": codigoTitulo,
+        "tituloAlterado": Titulo.objects.get(pk=codigoTitulo)
+    }
+    return render(request, "titulo/atualizarTitulo.html", context)
