@@ -82,9 +82,9 @@
                     <td> {{ turma.data_inicial|date:"SHORT_DATE_FORMAT" }} </td>
                     <td> {{ turma.data_final|date:"SHORT_DATE_FORMAT"|default:"--" }} </td>
                     <td> {{ turma.codigo_tipo_atividade.descricao }} </td>
-                    <td> {{ turma.id_instrutor.nome }} </td>
-                    <td> {{ turma.id_instrutor.codigo_titulo.descricao }} </td>
-                    <td> {{ turma.matricula_monitor.nome }} </td>
+                    <td> {{ turma.id_instrutor.nome|default:"--" }} </td>
+                    <td> {{ turma.id_instrutor.codigo_titulo.descricao|default:"--" }} </td>
+                    <td> {{ turma.matricula_monitor.nome|default:"--" }} </td>
                 </tr>
                 {% endfor %}
             </tbody>
